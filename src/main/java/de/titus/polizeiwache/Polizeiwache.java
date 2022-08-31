@@ -5,6 +5,7 @@ import de.titus.polizeiwache.challenges.NoJumpListener;
 import de.titus.polizeiwache.challenges.NoSneakListener;
 import de.titus.polizeiwache.commands.FlyCommand;
 import de.titus.polizeiwache.commands.GamemodeCommand;
+import de.titus.polizeiwache.commands.NoJumpCommand;
 import de.titus.polizeiwache.commands.VanishCommand;
 import de.titus.polizeiwache.listeners.InventoryListener;
 import de.titus.polizeiwache.listeners.JoinQuitListener;
@@ -24,14 +25,11 @@ public final class Polizeiwache extends JavaPlugin {
     public static boolean flyBoolean = false;
 
 
-    public static boolean nojump_start = false;
-    public static boolean nojump_stop = true;
+    public static boolean nojump = false;
 
-    public static boolean nosneak_start = false;
-    public static boolean nosneak_stop = true;
+    public static boolean nosneak = false;
 
-    public static boolean ice_start = false;
-    public static boolean ice_stop = true;
+    public static boolean ice = false;
 
 
     public static String prefix = ChatColor.DARK_GRAY + "[" + ChatColor.BLUE +"Polizei§fWache" + ChatColor.DARK_GRAY + "] ";
@@ -92,6 +90,7 @@ public final class Polizeiwache extends JavaPlugin {
         getCommand("fly").setExecutor(new FlyCommand());
         getCommand("utils").setExecutor(new UtilsCommand());
         getCommand("vanish").setExecutor(new VanishCommand());
+        getCommand("nojump").setExecutor(new NoJumpCommand());
     }
 
     public void WorldSettings() {

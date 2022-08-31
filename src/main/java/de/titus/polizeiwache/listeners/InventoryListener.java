@@ -18,13 +18,11 @@ public class InventoryListener implements Listener {
     public static boolean flyBoolean = Polizeiwache.flyBoolean;
 
 
-    public static boolean nojump_start = Polizeiwache.nojump_start;
-    public static boolean nojump_stop = Polizeiwache.nojump_stop;
+    public static boolean nojump = Polizeiwache.nojump;
 
-    public static boolean nosneak_start = Polizeiwache.nosneak_start;
-    public static boolean nosneak_stop = Polizeiwache.nosneak_stop;
-    public static boolean ice_start = Polizeiwache.ice_start;
-    public static boolean ice_stop = Polizeiwache.ice_stop;
+    public static boolean nosneak = Polizeiwache.nosneak;
+
+    public static boolean ice = Polizeiwache.ice;
 
     public static Inventory gamemode = Bukkit.createInventory(null, 3 * 9, "§5Gamemodes:");
     public static Inventory vanish = Bukkit.createInventory(null, 3*9, "§5Vanish:");
@@ -83,6 +81,8 @@ public class InventoryListener implements Listener {
                         timer.setItem(18, new ItemBuilder(Material.ARROW).setDisplayname("§7Back").setLocalizedName("back").build());
                         player.openInventory(timer);
                         break;
+                    default:
+                        break;
                 }
             }
         }
@@ -112,6 +112,8 @@ public class InventoryListener implements Listener {
                     case "back":
                         player.openInventory(op_utils);
                         break;
+                    default:
+                        break;
                 }
             }
         }
@@ -135,6 +137,8 @@ public class InventoryListener implements Listener {
                         break;
                     case "back":
                         player.openInventory(op_utils);
+                        break;
+                    default:
                         break;
                 }
             }
@@ -162,6 +166,8 @@ public class InventoryListener implements Listener {
                     case "back":
                         player.openInventory(op_utils);
                         break;
+                    default:
+                        break;
                 }
             }
         }
@@ -187,6 +193,8 @@ public class InventoryListener implements Listener {
                     case "back":
                         player.openInventory(op_utils);
                         break;
+                    default:
+                        break;
                 }
             }
         }
@@ -197,46 +205,42 @@ public class InventoryListener implements Listener {
             if(event.getCurrentItem().getItemMeta().hasLocalizedName()) {
                 switch(event.getCurrentItem().getItemMeta().getLocalizedName()) {
                     case "nojump":
-                        if(!nojump_start && nojump_stop) {
-                            nojump_start = true;
-                            nojump_stop = false;
+                        if(!nojump) {
+                            nojump = true;
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 20);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§aDie Challenge 'NoJump' wurde gestartet!");
-                        } else if(nojump_start && !nojump_stop) {
-                            nojump_start = false;
-                            nojump_stop = true;
+                        } else {
+                            nojump = false;
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 10);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§cDie Challenge 'NoJump' wurde gestoppt!");
                         }
                         break;
                     case "nosneak":
-                        if(!nosneak_start && nosneak_stop) {
-                            nosneak_start = true;
-                            nosneak_stop = false;
+                        if(!nosneak) {
+                            nosneak = true;
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 20);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§aDie Challenge 'NoSneak' wurde gestartet!");
-                        } else if(nosneak_start && !nosneak_stop) {
-                            nosneak_start = false;
-                            nosneak_stop = true;
+                        } else {
+                            nosneak = false;
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 10);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§cDie Challenge 'NoSneak' wurde gestoppt!");
                         }
                         break;
                     case "ice":
-                        if(!ice_start && ice_stop) {
-                            ice_start = true;
-                            ice_stop = false;
+                        if(!ice) {
+                            ice = true;
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 20);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§aDie Challenge 'Ice' wurde gestartet!");
-                        } else if(ice_start && !ice_stop) {
-                            ice_start = false;
-                            ice_stop = true;
+                        } else {
+                            ice = false;
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 10);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§cDie Challenge 'Ice' wurde gestoppt!");
                         }
                         break;
                     case "back":
                         player.openInventory(op_utils);
+                        break;
+                    default:
                         break;
                 }
             }
@@ -251,6 +255,8 @@ public class InventoryListener implements Listener {
 
                     case "back":
                         player.openInventory(op_utils);
+                        break;
+                    default:
                         break;
                 }
             }

@@ -16,3 +16,7 @@ commands:
   vanish:
     aliases:
       - v
+
+  nojump:
+    aliases:
+      - nj

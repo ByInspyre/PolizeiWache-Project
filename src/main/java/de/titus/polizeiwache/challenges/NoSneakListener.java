@@ -10,12 +10,11 @@ import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 public class NoSneakListener implements Listener {
 
-    boolean nosneak_start = InventoryListener.nosneak_start;
-    boolean nosneak_stop = InventoryListener.nosneak_stop;
+    boolean nosneak = InventoryListener.nosneak;
 
     @EventHandler
     public void onSneak(PlayerToggleSneakEvent event) {
-        if(nosneak_start && !nosneak_stop) {
+        if(nosneak) {
             Player player = event.getPlayer();
             Bukkit.getOnlinePlayers().forEach(player1 -> player.setGameMode(GameMode.SPECTATOR));
             Bukkit.getOnlinePlayers().forEach(player1 -> player.sendTitle("§cIhr habt versagt!", "§c" + event.getPlayer().getName() + " hat gesneakt!"));
