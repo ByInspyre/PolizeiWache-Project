@@ -1,0 +1,18 @@
+name: PolizeiWache
+version: '${project.version}'
+main: de.titus.polizeiwache.Polizeiwache
+api-version: 1.18
+authors: [ Titus, Alex ]
+description: PolizeiWache Challenge-Server Plugin
+commands:
+  gm:
+
+  fly:
+
+  utils:
+    aliases:
+      - u
+
+  vanish:
+    aliases:
+      - v
