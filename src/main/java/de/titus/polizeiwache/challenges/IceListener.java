@@ -10,30 +10,33 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 public class IceListener implements Listener {
-    boolean ice = InventoryListener.ice;
+    boolean ice_start = InventoryListener.ice_start;
+    boolean ice_stop = InventoryListener.ice_stop;
 
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
-        if(ice) {
-            Player player = event.getPlayer();
-            Block block = player.getLocation().subtract(0, -1, 0).getBlock();
-            block.setType(Material.ICE);
-            block.getRelative(0, 0, 1).setType(Material.ICE);
-            block.getRelative(0, 0, 2).setType(Material.ICE);
+        if(!ice_stop) {
+            if(ice_start) {
+                Player player = event.getPlayer();
+                Block block = player.getLocation().subtract(0, 1, 0).getBlock();
+                block.setType(Material.ICE);
+                block.getRelative(0, 0, 1).setType(Material.ICE);
+                block.getRelative(0, 0, 2).setType(Material.ICE);
 
-            block.getRelative(1, 0, 0).setType(Material.ICE);
-            block.getRelative(2, 0, 0).setType(Material.ICE);
+                block.getRelative(1, 0, 0).setType(Material.ICE);
+                block.getRelative(2, 0, 0).setType(Material.ICE);
 
-            block.getRelative(1, 0, 1).setType(Material.ICE);
-            block.getRelative(1, 0, 2).setType(Material.ICE);
-            block.getRelative(2, 0, 1).setType(Material.ICE);
-            block.getRelative(2, 0, 2).setType(Material.ICE);
+                block.getRelative(1, 0, 1).setType(Material.ICE);
+                block.getRelative(1, 0, 2).setType(Material.ICE);
+                block.getRelative(2, 0, 1).setType(Material.ICE);
+                block.getRelative(2, 0, 2).setType(Material.ICE);
 
-            block.getRelative(-1, 0, -1).setType(Material.ICE);
-            block.getRelative(-1, 0, -2).setType(Material.ICE);
-            block.getRelative(-2, 0, -1).setType(Material.ICE);
-            block.getRelative(-2, 0, -2).setType(Material.ICE);
+                block.getRelative(-1, 0, -1).setType(Material.ICE);
+                block.getRelative(-1, 0, -2).setType(Material.ICE);
+                block.getRelative(-2, 0, -1).setType(Material.ICE);
+                block.getRelative(-2, 0, -2).setType(Material.ICE);
+            }
         }
     }
 }

@@ -19,13 +19,22 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Polizeiwache extends JavaPlugin {
 
+    public static boolean vanishBoolean = false;
 
-    public static boolean nojump = false;
-    public static boolean nosneak = false;
-    public static boolean ice = false;
+    public static boolean flyBoolean = false;
 
 
-    public static String prefix = ChatColor.DARK_GRAY + "[" + ChatColor.BLUE +"PolizeiWache" + ChatColor.DARK_GRAY + "] ";
+    public static boolean nojump_start = false;
+    public static boolean nojump_stop = true;
+
+    public static boolean nosneak_start = false;
+    public static boolean nosneak_stop = true;
+
+    public static boolean ice_start = false;
+    public static boolean ice_stop = true;
+
+
+    public static String prefix = ChatColor.DARK_GRAY + "[" + ChatColor.BLUE +"Polizei§fWache" + ChatColor.DARK_GRAY + "] ";
     public static String getPrefix() {
         return prefix;
     }
