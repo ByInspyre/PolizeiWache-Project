@@ -1,6 +1,7 @@
 package de.titus.polizeiwache.listeners;
 
 import de.titus.polizeiwache.Polizeiwache;
+import de.titus.polizeiwache.challenges.IceListener;
 import de.titus.polizeiwache.challenges.NoJumpListener;
 import de.titus.polizeiwache.itembuilder.ItemBuilder;
 import de.titus.polizeiwache.utils.UtilsCommand;
@@ -12,8 +13,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
+import java.util.List;
+
 
 public class InventoryListener implements Listener {
+
+
+
 
     public static boolean vanishBoolean =Polizeiwache.vanishBoolean;
 
@@ -209,6 +215,7 @@ public class InventoryListener implements Listener {
                     case "nojump":
                         if(!nojump) {
                             nojump = true;
+                            //Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().noJumpListener, this);
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 20);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§aDie Challenge 'NoJump' wurde gestartet!");
                         } else {
@@ -218,15 +225,15 @@ public class InventoryListener implements Listener {
                         }
                         break;
                     case "nosneak":
-                        if(!nosneak) {
+                        //if(!nosneak) {
                             nosneak = true;
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 20);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§aDie Challenge 'NoSneak' wurde gestartet!");
-                        } else {
+                        //} else {
                             nosneak = false;
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 10);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§cDie Challenge 'NoSneak' wurde gestoppt!");
-                        }
+                        //}
                         break;
                     case "ice":
                         if(!ice) {

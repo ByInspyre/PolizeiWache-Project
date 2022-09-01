@@ -15,10 +15,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Polizeiwache extends JavaPlugin {
+
+    public Listener noJumpListener = new NoJumpListener();
+    public Listener iceListener = new IceListener();
+
 
     public static boolean vanishBoolean = false;
 
@@ -63,7 +68,7 @@ public final class Polizeiwache extends JavaPlugin {
     public void onEnable() {
         Bukkit.getLogger().info(Polizeiwache.getPrefix() + "§aPlugin loaded");
 
-        lstRegistration();
+        //lstRegistration();
         cmdRegistration();
 
         WorldSettings();
@@ -97,8 +102,4 @@ public final class Polizeiwache extends JavaPlugin {
         Bukkit.getWorld("world").setDifficulty(Difficulty.HARD);
     }
 
-    public HandlerList handlerList;
-    public HandlerList getHandlerList() {
-        return handlerList;
-    }
 }
