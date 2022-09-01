@@ -16,12 +16,18 @@ import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.java.JavaPluginLoader;
+import org.jetbrains.annotations.NotNull;
 
-public final class Polizeiwache extends JavaPlugin {
+import java.io.File;
+
+public class Polizeiwache extends JavaPlugin {
 
     public Listener noJumpListener = new NoJumpListener();
+    public Listener noSneakListener = new NoSneakListener();
     public Listener iceListener = new IceListener();
 
 
@@ -68,7 +74,7 @@ public final class Polizeiwache extends JavaPlugin {
     public void onEnable() {
         Bukkit.getLogger().info(Polizeiwache.getPrefix() + "§aPlugin loaded");
 
-        //lstRegistration();
+        lstRegistration();
         cmdRegistration();
 
         WorldSettings();
@@ -85,9 +91,6 @@ public final class Polizeiwache extends JavaPlugin {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new JoinQuitListener(), this);
         pm.registerEvents(new InventoryListener(), this);
-        pm.registerEvents(new NoJumpListener(), this);
-        pm.registerEvents(new NoSneakListener(), this);
-        pm.registerEvents(new IceListener(), this);
     }
 
     public void cmdRegistration() {

@@ -11,20 +11,10 @@ import org.bukkit.event.Listener;
 
 public class NoJumpListener implements Listener {
 
-    boolean nojump = InventoryListener.nojump;
-    boolean nojump1 = NoJumpCommand.nojump;
-
     @EventHandler
     public void onJump(PlayerJumpEvent event) {
-        if(nojump) {
             Player player = event.getPlayer();
             Bukkit.getOnlinePlayers().forEach(player1 -> player.setGameMode(GameMode.SPECTATOR));
             Bukkit.getOnlinePlayers().forEach(player1 -> player.sendTitle("§cIhr habt versagt!", "§c" + event.getPlayer().getName() + " ist gesprungen"));
-        }
-        if(nojump1) {
-            Player player = event.getPlayer();
-            Bukkit.getOnlinePlayers().forEach(player1 -> player.setGameMode(GameMode.SPECTATOR));
-            Bukkit.getOnlinePlayers().forEach(player1 -> player.sendTitle("§cIhr habt versagt!", "§c" + event.getPlayer().getName() + " ist gesprungen"));
-        }
     }
 }
