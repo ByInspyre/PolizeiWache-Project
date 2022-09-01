@@ -1,11 +1,13 @@
 package de.titus.polizeiwache.listeners;
 
 import de.titus.polizeiwache.Polizeiwache;
+import de.titus.polizeiwache.challenges.NoJumpListener;
 import de.titus.polizeiwache.itembuilder.ItemBuilder;
 import de.titus.polizeiwache.utils.UtilsCommand;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
