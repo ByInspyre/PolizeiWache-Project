@@ -7,6 +7,7 @@ import de.titus.polizeiwache.commands.FlyCommand;
 import de.titus.polizeiwache.commands.GamemodeCommand;
 import de.titus.polizeiwache.commands.NoJumpCommand;
 import de.titus.polizeiwache.commands.VanishCommand;
+import de.titus.polizeiwache.listeners.BlockListeners;
 import de.titus.polizeiwache.listeners.InventoryListener;
 import de.titus.polizeiwache.listeners.JoinQuitListener;
 import de.titus.polizeiwache.tablist.TablistManager;
@@ -14,6 +15,7 @@ import de.titus.polizeiwache.utils.UtilsCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
+import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -29,6 +31,7 @@ public class Polizeiwache extends JavaPlugin {
     public Listener noJumpListener = new NoJumpListener();
     public Listener noSneakListener = new NoSneakListener();
     public Listener iceListener = new IceListener();
+    public Listener blockListeners = new BlockListeners();
 
 
     public static boolean vanishBoolean = false;
@@ -91,6 +94,7 @@ public class Polizeiwache extends JavaPlugin {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new JoinQuitListener(), this);
         pm.registerEvents(new InventoryListener(), this);
+        pm.registerEvents(new BlockListeners(), this);
     }
 
     public void cmdRegistration() {
@@ -104,5 +108,13 @@ public class Polizeiwache extends JavaPlugin {
     public void WorldSettings() {
         Bukkit.getWorld("world").setDifficulty(Difficulty.HARD);
     }
+
+    public void sendMessageToAllPlayers(final String text) {
+        for (final Player all : Bukkit.getOnlinePlayers()) {
+            all.sendMessage(text);
+        }
+    }
+
+
 
 }

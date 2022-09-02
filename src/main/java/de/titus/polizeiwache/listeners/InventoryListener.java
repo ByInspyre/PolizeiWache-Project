@@ -14,17 +14,6 @@ import org.bukkit.inventory.Inventory;
 
 public class InventoryListener implements Listener {
 
-    public static boolean vanishBoolean = Polizeiwache.vanishBoolean;
-
-    public static boolean flyBoolean = Polizeiwache.flyBoolean;
-
-
-    public static boolean nojump = Polizeiwache.nojump;
-
-    public static boolean nosneak = Polizeiwache.nosneak;
-
-    public static boolean ice = Polizeiwache.ice;
-
     public static Inventory gamemode = Bukkit.createInventory(null, 3 * 9, "§5Gamemodes:");
     public static Inventory vanish = Bukkit.createInventory(null, 3*9, "§5Vanish:");
     public static Inventory fly = Bukkit.createInventory(null, 3*9, "§5Fly:");
@@ -70,9 +59,7 @@ public class InventoryListener implements Listener {
                         break;
                     case "challenge":
                         challenge.setItem(10, new ItemBuilder(Material.COBWEB).setDisplayname("§aNoJump").setLore("In dieser Challenge").setLore("darfst du nicht springen").setLocalizedName("nojump").build());
-
                         challenge.setItem(11, new ItemBuilder(Material.FEATHER).setDisplayname("§aNoSneak").setLore("In dieser Challenge").setLore("darfst du nicht sneaken").setLocalizedName("nosneak").build());
-
                         challenge.setItem(12, new ItemBuilder(Material.ICE).setDisplayname("§aIce").setLore("In dieser Challenge").setLore("spawnt Eis unter dir!").setLocalizedName("ice").build());
 
                         challenge.setItem(27, new ItemBuilder(Material.ARROW).setDisplayname("§7Back").setLocalizedName("back").build());
@@ -91,7 +78,6 @@ public class InventoryListener implements Listener {
         if (event.getView().getTitle() == "§5Gamemodes:") {
             Player player = (Player) event.getWhoClicked();
             event.setCancelled(true);
-            Inventory op_utils = UtilsCommand.op_utils;
             if (event.getCurrentItem().getItemMeta().hasLocalizedName()) {
                 switch (event.getCurrentItem().getItemMeta().getLocalizedName()) {
                     case "survival":
@@ -111,7 +97,7 @@ public class InventoryListener implements Listener {
                         player.sendMessage(Polizeiwache.getPrefix() + "§7Du bist jetzt in §eADVENTURE");
                         break;
                     case "back":
-                        player.openInventory(op_utils);
+                        player.openInventory(UtilsCommand.op_utils);
                         break;
                     default:
                         break;
@@ -122,22 +108,21 @@ public class InventoryListener implements Listener {
         if(event.getView().getTitle() == "§5Vanish:") {
             Player player = (Player) event.getWhoClicked();
             event.setCancelled(true);
-            Inventory op_utils = UtilsCommand.op_utils;
             if(event.getCurrentItem().getItemMeta().hasLocalizedName()) {
                 switch(event.getCurrentItem().getItemMeta().getLocalizedName()) {
                     case "vanish":
-                        if(!vanishBoolean) {
+                        if(!Polizeiwache.vanishBoolean) {
                             player.setInvisible(true);
-                            vanishBoolean = true;
+                            Polizeiwache.vanishBoolean = true;
                             player.sendMessage(Polizeiwache.getPrefix() + "§aDu bist jetzt im Vanish!");
                         } else {
                             player.setInvisible(false);
-                            vanishBoolean = false;
+                            Polizeiwache.vanishBoolean = false;
                             player.sendMessage(Polizeiwache.getPrefix() + "§cDu bist jetzt nicht mehr im Vanish!");
                         }
                         break;
                     case "back":
-                        player.openInventory(op_utils);
+                        player.openInventory(UtilsCommand.op_utils);
                         break;
                     default:
                         break;
@@ -148,24 +133,23 @@ public class InventoryListener implements Listener {
         if(event.getView().getTitle() == "§5Fly:") {
             Player player = (Player) event.getWhoClicked();
             event.setCancelled(true);
-            Inventory op_utils = UtilsCommand.op_utils;
             if(event.getCurrentItem().getItemMeta().hasLocalizedName()) {
                 switch(event.getCurrentItem().getItemMeta().getLocalizedName()) {
                     case "fly":
-                        if(!flyBoolean) {
+                        if(!Polizeiwache.flyBoolean) {
                             player.setAllowFlight(true);
                             player.setFlying(true);
-                            flyBoolean = true;
+                            Polizeiwache.flyBoolean = true;
                             player.sendMessage(Polizeiwache.getPrefix() + "§aDu fliegst jetzt!");
                         } else {
                             player.setAllowFlight(false);
                             player.setFlying(false);
-                            flyBoolean = false;
+                            Polizeiwache.flyBoolean = false;
                             player.sendMessage(Polizeiwache.getPrefix() + "§cDu fliegst jetzt nicht mehr!");
                         }
                         break;
                     case "back":
-                        player.openInventory(op_utils);
+                        player.openInventory(UtilsCommand.op_utils);
                         break;
                     default:
                         break;
@@ -176,7 +160,6 @@ public class InventoryListener implements Listener {
         if(event.getView().getTitle() == "§5Heal:") {
             Player player = (Player) event.getWhoClicked();
             event.setCancelled(true);
-            Inventory op_utils = UtilsCommand.op_utils;
             if(event.getCurrentItem().getItemMeta().hasLocalizedName()) {
                 switch(event.getCurrentItem().getItemMeta().getLocalizedName()) {
                     case "healme":
@@ -192,7 +175,7 @@ public class InventoryListener implements Listener {
                         }
                         break;
                     case "back":
-                        player.openInventory(op_utils);
+                        player.openInventory(UtilsCommand.op_utils);
                         break;
                     default:
                         break;
@@ -202,50 +185,57 @@ public class InventoryListener implements Listener {
         if (event.getView().getTitle() == "§5Challenges:") {
             Player player = (Player) event.getWhoClicked();
             event.setCancelled(true);
-            Inventory op_utils = UtilsCommand.op_utils;
             if(event.getCurrentItem().getItemMeta().hasLocalizedName()) {
                 switch(event.getCurrentItem().getItemMeta().getLocalizedName()) {
                     case "nojump":
-                        if(!nojump) {
-                            nojump = true;
+                        if(!Polizeiwache.nojump) {
+                            Polizeiwache.nojump = true;
                             Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().noJumpListener, Polizeiwache.getInstance());
+                            HandlerList.unregisterAll(Polizeiwache.getInstance().blockListeners);
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 20);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§aDie Challenge 'NoJump' wurde gestartet!");
+                            Polizeiwache.getInstance().sendMessageToAllPlayers(Polizeiwache.getPrefix() + "§aDie Challenge 'NoJump' wurde gestartet!");
                         } else {
-                            nojump = false;
+                            Polizeiwache.nojump = false;
                             HandlerList.unregisterAll(Polizeiwache.getInstance().noJumpListener);
+                            Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().blockListeners, Polizeiwache.getInstance());
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 10);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§cDie Challenge 'NoJump' wurde gestoppt!");
                         }
                         break;
                     case "nosneak":
-                        if(!nosneak) {
-                            nosneak = true;
+                        if(!Polizeiwache.nosneak) {
+                            Polizeiwache.nosneak = true;
                             Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().noSneakListener, Polizeiwache.getInstance());
+                            HandlerList.unregisterAll(Polizeiwache.getInstance().blockListeners);
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 20);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§aDie Challenge 'NoSneak' wurde gestartet!");
                         } else {
-                            nosneak = false;
+                            Polizeiwache.nosneak = false;
                             HandlerList.unregisterAll(Polizeiwache.getInstance().noSneakListener);
+                            Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().blockListeners, Polizeiwache.getInstance());
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 10);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§cDie Challenge 'NoSneak' wurde gestoppt!");
                         }
                         break;
                     case "ice":
-                        if(!ice) {
-                            ice = true;
+                        if(!Polizeiwache.ice) {
+                            Polizeiwache.ice = true;
                             Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().iceListener, Polizeiwache.getInstance());
+                            HandlerList.unregisterAll(Polizeiwache.getInstance().blockListeners);
+
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 20);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§aDie Challenge 'Ice' wurde gestartet!");
                         } else {
-                            ice = false;
+                            Polizeiwache.ice = false;
                             HandlerList.unregisterAll(Polizeiwache.getInstance().iceListener);
+                            Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().blockListeners, Polizeiwache.getInstance());
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 10);
                             Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§cDie Challenge 'Ice' wurde gestoppt!");
                         }
                         break;
                     case "back":
-                        player.openInventory(op_utils);
+                        player.openInventory(UtilsCommand.op_utils);
                         break;
                     default:
                         break;
@@ -256,12 +246,11 @@ public class InventoryListener implements Listener {
         if(event.getView().getTitle() == "§5Timer:") {
             Player player = (Player) event.getWhoClicked();
             event.setCancelled(true);
-            Inventory op_utils = UtilsCommand.op_utils;
             if(event.getCurrentItem().getItemMeta().hasLocalizedName()) {
                 switch(event.getCurrentItem().getItemMeta().getLocalizedName()) {
 
                     case "back":
-                        player.openInventory(op_utils);
+                        player.openInventory(UtilsCommand.op_utils);
                         break;
                     default:
                         break;

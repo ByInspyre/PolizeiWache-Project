@@ -23,7 +23,7 @@ public class UtilsCommand implements CommandExecutor {
             op_utils.setItem(12, new ItemBuilder(Material.GHAST_TEAR).setDisplayname("§7Vanish:").setLocalizedName("vanish").build());
             op_utils.setItem(14, new ItemBuilder(Material.FEATHER).setDisplayname("§7Fly:").setLocalizedName("fly").build());
             op_utils.setItem(16, new ItemBuilder(Material.GOLDEN_CARROT).setDisplayname("§7Heal:").setLocalizedName("heal").build());
-            op_utils.setItem(28, new ItemBuilder(Material.IRON_PICKAXE).setDisplayname("§7CDallenges:").setLocalizedName("challenge").build());
+            op_utils.setItem(28, new ItemBuilder(Material.IRON_PICKAXE).setDisplayname("§7Challenges:").setLocalizedName("challenge").build());
             op_utils.setItem(30, new ItemBuilder(Material.GOLDEN_CARROT).setDisplayname("§7Timer").setLocalizedName("timer").build());
             player.openInventory(op_utils);
         }
