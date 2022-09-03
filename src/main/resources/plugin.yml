@@ -6,17 +6,25 @@ authors: [ Titus, Alex ]
 description: PolizeiWache Challenge-Server Plugin
 commands:
   gm:
+    permission: core.gamemode
 
   fly:
+    permission: core.fly
 
   utils:
+    permission: core.utils
     aliases:
       - u
 
   vanish:
+    permission: core.vanish
     aliases:
       - v
 
-  nojump:
+  discord:
     aliases:
-      - nj
+      - dc
+
+  commands:
+    aliases:
+      - cmd

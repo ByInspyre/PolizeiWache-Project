@@ -18,7 +18,7 @@ public class InventoryListener implements Listener {
     public static Inventory vanish = Bukkit.createInventory(null, 3*9, "§5Vanish:");
     public static Inventory fly = Bukkit.createInventory(null, 3*9, "§5Fly:");
     public static Inventory heal = Bukkit.createInventory(null, 3*9, "§5Heal:");
-    public static Inventory challenge = Bukkit.createInventory(null, 5*9, "§5Challenges:");
+    public static Inventory challenge = Bukkit.createInventory(null, 4*9, "§5Challenges:");
     public static Inventory timer = Bukkit.createInventory(null, 3*9, "§5Timer:");
 
     @EventHandler
@@ -59,8 +59,13 @@ public class InventoryListener implements Listener {
                         break;
                     case "challenge":
                         challenge.setItem(10, new ItemBuilder(Material.COBWEB).setDisplayname("§aNoJump").setLore("In dieser Challenge").setLore("darfst du nicht springen").setLocalizedName("nojump").build());
+                        challenge.setItem(19, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).build());
+
                         challenge.setItem(11, new ItemBuilder(Material.FEATHER).setDisplayname("§aNoSneak").setLore("In dieser Challenge").setLore("darfst du nicht sneaken").setLocalizedName("nosneak").build());
+                        challenge.setItem(20, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).build());
+
                         challenge.setItem(12, new ItemBuilder(Material.ICE).setDisplayname("§aIce").setLore("In dieser Challenge").setLore("spawnt Eis unter dir!").setLocalizedName("ice").build());
+                        challenge.setItem(21, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).build());
 
                         challenge.setItem(27, new ItemBuilder(Material.ARROW).setDisplayname("§7Back").setLocalizedName("back").build());
                         player.openInventory(challenge);
@@ -190,48 +195,43 @@ public class InventoryListener implements Listener {
                     case "nojump":
                         if(!Polizeiwache.nojump) {
                             Polizeiwache.nojump = true;
+                            challenge.setItem(19, new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE).build());
                             Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().noJumpListener, Polizeiwache.getInstance());
-                            HandlerList.unregisterAll(Polizeiwache.getInstance().blockListeners);
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 20);
-                            Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§aDie Challenge 'NoJump' wurde gestartet!");
                             Polizeiwache.getInstance().sendMessageToAllPlayers(Polizeiwache.getPrefix() + "§aDie Challenge 'NoJump' wurde gestartet!");
                         } else {
                             Polizeiwache.nojump = false;
-                            HandlerList.unregisterAll(Polizeiwache.getInstance().noJumpListener);
-                            Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().blockListeners, Polizeiwache.getInstance());
+                            challenge.setItem(19, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).build());
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 10);
-                            Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§cDie Challenge 'NoJump' wurde gestoppt!");
+                            Polizeiwache.getInstance().sendMessageToAllPlayers(Polizeiwache.getPrefix() + "§cDie Challenge 'NoJump' wurde gestoppt!");
                         }
                         break;
                     case "nosneak":
                         if(!Polizeiwache.nosneak) {
                             Polizeiwache.nosneak = true;
+                            challenge.setItem(20, new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE).build());
                             Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().noSneakListener, Polizeiwache.getInstance());
-                            HandlerList.unregisterAll(Polizeiwache.getInstance().blockListeners);
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 20);
-                            Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§aDie Challenge 'NoSneak' wurde gestartet!");
+                            Polizeiwache.getInstance().sendMessageToAllPlayers(Polizeiwache.getPrefix() + "§aDie Challenge 'NoSneak' wurde gestartet!");
                         } else {
                             Polizeiwache.nosneak = false;
-                            HandlerList.unregisterAll(Polizeiwache.getInstance().noSneakListener);
-                            Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().blockListeners, Polizeiwache.getInstance());
+                            challenge.setItem(20, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).build());
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 10);
-                            Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§cDie Challenge 'NoSneak' wurde gestoppt!");
+                            Polizeiwache.getInstance().sendMessageToAllPlayers(Polizeiwache.getPrefix() + "§cDie Challenge 'NoSneak' wurde gestoppt!");
                         }
                         break;
                     case "ice":
                         if(!Polizeiwache.ice) {
                             Polizeiwache.ice = true;
+                            challenge.setItem(21, new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE).build());
                             Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().iceListener, Polizeiwache.getInstance());
-                            HandlerList.unregisterAll(Polizeiwache.getInstance().blockListeners);
-
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 20);
-                            Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§aDie Challenge 'Ice' wurde gestartet!");
+                            Polizeiwache.getInstance().sendMessageToAllPlayers(Polizeiwache.getPrefix() + "§aDie Challenge 'Ice' wurde gestartet!");
                         } else {
                             Polizeiwache.ice = false;
-                            HandlerList.unregisterAll(Polizeiwache.getInstance().iceListener);
-                            Bukkit.getPluginManager().registerEvents(Polizeiwache.getInstance().blockListeners, Polizeiwache.getInstance());
+                            challenge.setItem(21, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).build());
                             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 10);
-                            Bukkit.broadcastMessage(Polizeiwache.getPrefix() + "§cDie Challenge 'Ice' wurde gestoppt!");
+                            Polizeiwache.getInstance().sendMessageToAllPlayers(Polizeiwache.getPrefix() + "§cDie Challenge 'Ice' wurde gestoppt!");
                         }
                         break;
                     case "back":
@@ -256,6 +256,11 @@ public class InventoryListener implements Listener {
                         break;
                 }
             }
+        }
+
+        if(event.getView().getTitle() == "§7Commands:") {
+            Player player = (Player) event.getWhoClicked();
+            event.setCancelled(true);
         }
 
     }

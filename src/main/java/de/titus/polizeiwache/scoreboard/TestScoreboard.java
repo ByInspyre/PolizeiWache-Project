@@ -25,7 +25,7 @@ public class TestScoreboard extends ScoreboardBuilder{
         } else if(player.hasPermission("core.moderator")) {
             setScore("§8-§9Moderator", 2);
         } else if(player.hasPermission("core.developer")) {
-            setScore("§8-§eDeveloper", 2);
+            setScore("§8-§bDeveloper", 2);
         } else {
             setScore("§8-§aSpieler", 2);
         }

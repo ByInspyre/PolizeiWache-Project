@@ -10,7 +10,8 @@ import org.bukkit.scoreboard.Team;
 public class TablistManager {
 
     public void setPlayerList(Player player) {
-        player.setPlayerListHeaderFooter("§9Polizei§fWache\n", "\n§9Plugin by §eTitus#0420");
+        player.setPlayerListHeaderFooter(ChatColor.WHITE + ChatColor.BOLD.toString() + "Polizei" + ChatColor.BLUE + ChatColor.BOLD.toString() + "Wache.de" + ChatColor.DARK_GRAY + " | "
+                + ChatColor.BLUE + ChatColor.BOLD.toString() + "Challenge" + ChatColor.WHITE + ChatColor.BOLD.toString() + " Netzwerk", ChatColor.GRAY + "\n/discord\n/commands\n");
     }
 
     public void setAllPlayerTeams() {

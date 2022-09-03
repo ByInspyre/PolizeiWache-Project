@@ -3,11 +3,7 @@ package de.titus.polizeiwache;
 import de.titus.polizeiwache.challenges.IceListener;
 import de.titus.polizeiwache.challenges.NoJumpListener;
 import de.titus.polizeiwache.challenges.NoSneakListener;
-import de.titus.polizeiwache.commands.FlyCommand;
-import de.titus.polizeiwache.commands.GamemodeCommand;
-import de.titus.polizeiwache.commands.NoJumpCommand;
-import de.titus.polizeiwache.commands.VanishCommand;
-import de.titus.polizeiwache.listeners.BlockListeners;
+import de.titus.polizeiwache.commands.*;
 import de.titus.polizeiwache.listeners.InventoryListener;
 import de.titus.polizeiwache.listeners.JoinQuitListener;
 import de.titus.polizeiwache.tablist.TablistManager;
@@ -16,22 +12,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
 import org.bukkit.entity.Player;
-import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.java.JavaPluginLoader;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
+import java.util.Objects;
 
 public class Polizeiwache extends JavaPlugin {
 
     public Listener noJumpListener = new NoJumpListener();
     public Listener noSneakListener = new NoSneakListener();
     public Listener iceListener = new IceListener();
-    public Listener blockListeners = new BlockListeners();
 
 
     public static boolean vanishBoolean = false;
@@ -94,7 +85,6 @@ public class Polizeiwache extends JavaPlugin {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new JoinQuitListener(), this);
         pm.registerEvents(new InventoryListener(), this);
-        pm.registerEvents(new BlockListeners(), this);
     }
 
     public void cmdRegistration() {
@@ -102,11 +92,12 @@ public class Polizeiwache extends JavaPlugin {
         getCommand("fly").setExecutor(new FlyCommand());
         getCommand("utils").setExecutor(new UtilsCommand());
         getCommand("vanish").setExecutor(new VanishCommand());
-        getCommand("nojump").setExecutor(new NoJumpCommand());
+        getCommand("discord").setExecutor(new DiscordCommand());
+        getCommand("commands").setExecutor(new CmdCommand());
     }
 
     public void WorldSettings() {
-        Bukkit.getWorld("world").setDifficulty(Difficulty.HARD);
+        Objects.requireNonNull(Bukkit.getWorld("world")).setDifficulty(Difficulty.HARD);
     }
 
     public void sendMessageToAllPlayers(final String text) {
