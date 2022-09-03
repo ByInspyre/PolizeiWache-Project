@@ -12,6 +12,7 @@ import de.titus.polizeiwache.utils.UtilsCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
+import org.bukkit.GameRule;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
@@ -100,6 +101,11 @@ public class Polizeiwache extends JavaPlugin {
 
     public void WorldSettings() {
         Objects.requireNonNull(Bukkit.getWorld("world")).setDifficulty(Difficulty.HARD);
+        Objects.requireNonNull(Bukkit.getWorld("flatroom")).setDifficulty(Difficulty.HARD);
+        Objects.requireNonNull(Bukkit.getWorld("flatroom")).setPVP(false);
+        Objects.requireNonNull(Bukkit.getWorld("flatroom")).setClearWeatherDuration(999999999);
+        Objects.requireNonNull(Bukkit.getWorld("flatroom")).setGameRule(GameRule.DO_MOB_SPAWNING, false);
+        Objects.requireNonNull(Bukkit.getWorld("flatroom")).setDifficulty(Difficulty.PEACEFUL);
     }
 
     public void sendMessageToAllPlayers(final String text) {

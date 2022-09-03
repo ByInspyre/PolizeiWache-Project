@@ -11,7 +11,7 @@ public class TablistManager {
 
     public void setPlayerList(Player player) {
         player.setPlayerListHeaderFooter(ChatColor.WHITE + ChatColor.BOLD.toString() + "Polizei" + ChatColor.BLUE + ChatColor.BOLD.toString() + "Wache.de" + ChatColor.DARK_GRAY + " | "
-                + ChatColor.BLUE + ChatColor.BOLD.toString() + "Challenge" + ChatColor.WHITE + ChatColor.BOLD.toString() + " Netzwerk", ChatColor.GRAY + "\n/discord\n/commands\n");
+                + ChatColor.BLUE + ChatColor.BOLD.toString() + "Challenge" + ChatColor.WHITE + ChatColor.BOLD.toString() + " Netzwerk\n",  ChatColor.LIGHT_PURPLE + "\nCommands:" + ChatColor.GRAY + "\n/discord\n/commands\n");
     }
 
     public void setAllPlayerTeams() {
