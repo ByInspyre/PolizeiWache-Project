@@ -6,6 +6,7 @@ import de.titus.polizeiwache.challenges.NoSneakListener;
 import de.titus.polizeiwache.commands.*;
 import de.titus.polizeiwache.listeners.InventoryListener;
 import de.titus.polizeiwache.listeners.JoinQuitListener;
+import de.titus.polizeiwache.listeners.PlayerProcessCommandEvent;
 import de.titus.polizeiwache.tablist.TablistManager;
 import de.titus.polizeiwache.utils.UtilsCommand;
 import org.bukkit.Bukkit;
@@ -85,6 +86,7 @@ public class Polizeiwache extends JavaPlugin {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new JoinQuitListener(), this);
         pm.registerEvents(new InventoryListener(), this);
+        pm.registerEvents(new PlayerProcessCommandEvent(), this);
     }
 
     public void cmdRegistration() {
